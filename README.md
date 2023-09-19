@@ -1,2 +1,2 @@
 # Mango-Microservices
-Web app with microservices, MVC App, Identity and Gateway.
+Web app project with microservices, MVC App, Identity and Gateway.
