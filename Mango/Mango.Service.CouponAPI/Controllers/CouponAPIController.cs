@@ -12,22 +12,22 @@ namespace Mango.Service.CouponAPI.Controllers
     {
         private readonly AppDbContext _db;
         private IMapper _mapper;
-        private ResponseDTO _response;
+        private ResponseDto _response;
 
         public CouponAPIController(AppDbContext db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
-            _response = new ResponseDTO();
+            _response = new ResponseDto();
         }
 
         [HttpGet]
-        public ResponseDTO Get() 
+        public ResponseDto Get() 
         {
             try
             {
                 IEnumerable<Coupon> objList = _db.Coupons.ToList();
-                _response.Result = _mapper.Map<IEnumerable<CouponDTO>>(objList);
+                _response.Result = _mapper.Map<IEnumerable<CouponDto>>(objList);
             }
             catch (Exception ex)
             {
@@ -40,12 +40,12 @@ namespace Mango.Service.CouponAPI.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public ResponseDTO Get(int id)
+        public ResponseDto Get(int id)
         {
             try
             {
                 Coupon obj = _db.Coupons.First(c => c.CouponId == id);
-                _response.Result = _mapper.Map<CouponDTO>(obj);
+                _response.Result = _mapper.Map<CouponDto>(obj);
             }
             catch (Exception ex)
             {
@@ -58,12 +58,12 @@ namespace Mango.Service.CouponAPI.Controllers
 
         [HttpGet]
         [Route("GetByCode/{code}")]
-        public ResponseDTO GetByCode(string code)
+        public ResponseDto GetByCode(string code)
         {
             try
             {
                 Coupon obj = _db.Coupons.First(c => c.CouponCode.ToLower() == code.ToLower());
-                _response.Result = _mapper.Map<CouponDTO>(obj);
+                _response.Result = _mapper.Map<CouponDto>(obj);
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace Mango.Service.CouponAPI.Controllers
         }
 
         [HttpPost]
-        public ResponseDTO Post([FromBody] CouponDTO couponDTO)
+        public ResponseDto Post([FromBody] CouponDto couponDTO)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace Mango.Service.CouponAPI.Controllers
                 _db.Coupons.Add(obj);
                 _db.SaveChanges();
 
-                _response.Result = _mapper.Map<CouponDTO>(obj);
+                _response.Result = _mapper.Map<CouponDto>(obj);
             }
             catch (Exception ex)
             {
@@ -95,7 +95,7 @@ namespace Mango.Service.CouponAPI.Controllers
         }
 
         [HttpPut]
-        public ResponseDTO Put([FromBody] CouponDTO couponDTO)
+        public ResponseDto Put([FromBody] CouponDto couponDTO)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace Mango.Service.CouponAPI.Controllers
                 _db.Coupons.Update(obj);
                 _db.SaveChanges();
 
-                _response.Result = _mapper.Map<CouponDTO>(obj);
+                _response.Result = _mapper.Map<CouponDto>(obj);
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace Mango.Service.CouponAPI.Controllers
         }
 
         [HttpDelete]
-        public ResponseDTO Delete(int id)
+        public ResponseDto Delete(int id)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace Mango.Service.CouponAPI.Controllers
                 _db.Coupons.Remove(obj);
                 _db.SaveChanges();
 
-                _response.Result = _mapper.Map<CouponDTO>(obj);
+                _response.Result = _mapper.Map<CouponDto>(obj);
             }
             catch (Exception ex)
             {
