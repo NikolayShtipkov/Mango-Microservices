@@ -6,7 +6,7 @@
         public static string AuthAPIBase {  get; set; }
 
         public const string RoleAdmin = "ADMIN";
-        public const string RoleCustomer = "Customer";
+        public const string RoleCustomer = "CUSTOMER";
 
         public enum ApiType
         {
