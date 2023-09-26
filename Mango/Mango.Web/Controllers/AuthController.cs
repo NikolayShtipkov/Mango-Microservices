@@ -1,6 +1,8 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Service.IService;
+using Mango.Web.Utility;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Mango.Web.Controllers
 {
@@ -30,6 +32,15 @@ namespace Mango.Web.Controllers
         public IActionResult Register()
         {
             RegistrationRequestDto registerRequestDto = new();
+
+            var roles = new List<SelectListItem>()
+            {
+                new SelectListItem {Text = SD.RoleAdmin, Value = SD.RoleAdmin},
+                new SelectListItem {Text = SD.RoleCustomer, Value = SD.RoleCustomer},
+            };
+
+            ViewBag.Roles = roles;
+
             return View(registerRequestDto);
         }
     }
