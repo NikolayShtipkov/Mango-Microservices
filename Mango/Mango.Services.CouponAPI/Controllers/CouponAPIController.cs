@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Mango.Service.CouponAPI.Data;
-using Mango.Service.CouponAPI.Models;
-using Mango.Service.CouponAPI.Models.DTO;
+using Mango.Services.CouponAPI.Data;
+using Mango.Services.CouponAPI.Models;
+using Mango.Services.CouponAPI.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mango.Service.CouponAPI.Controllers
+namespace Mango.Services.CouponAPI.Controllers
 {
     [Route("api/coupon")]
     [ApiController]

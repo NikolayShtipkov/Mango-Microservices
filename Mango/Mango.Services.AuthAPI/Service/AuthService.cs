@@ -1,4 +1,4 @@
-﻿using Mango.Service.AuthAPI.Data;
+﻿using Mango.Services.AuthAPI.Data;
 using Mango.Services.AuthAPI.Models;
 using Mango.Services.AuthAPI.Models.DTO;
 using Mango.Services.AuthAPI.Service.IService;

@@ -1,7 +1,7 @@
-﻿using Mango.Service.CouponAPI.Models;
+﻿using Mango.Services.CouponAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Mango.Service.CouponAPI.Data
+namespace Mango.Services.CouponAPI.Data
 {
     public class AppDbContext : DbContext
     {

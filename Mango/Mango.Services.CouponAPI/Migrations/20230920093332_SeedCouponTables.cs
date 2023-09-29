@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Mango.Service.CouponAPI.Migrations
+namespace Mango.Services.CouponAPI.Migrations
 {
     public partial class SeedCouponTables : Migration
     {
