@@ -14,6 +14,7 @@
                 <input asp-for="CouponCode" class="form-control" />
                 <span asp-validation-for="CouponCode" class="text-danger"></span>
             </div>
+
             <div class="col-2">
                 <label  class="control-label pt-2" style="font-size:20px;"> Discount Amount</label>
             </div>
@@ -21,6 +22,7 @@
                 <input asp-for="DiscountAmount" class="form-control" />
                 <span asp-validation-for="DiscountAmount" class="text-danger"></span>
             </div>
+
             <div class="col-2">
                 <label  class="control-label pt-2" style="font-size:20px;"> Minimum Amount</label>
             </div>
@@ -30,14 +32,11 @@
             </div>
             
             <div class="col-5 offset-2">
-
                 <a asp-action="CouponIndex" class="btn-primary btn form-control ">Back to List</a>
             </div>
             <div class="col-5">
                 <input type="submit" value="Create" class="btn btn-success form-control" />
-
             </div>
-
         </div>
 
         <div>
