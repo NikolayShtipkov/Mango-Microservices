@@ -20,16 +20,16 @@ namespace Mango.Services.ProductAPI.Data
                 ProductId = 1,
                 Name = "Samosa",
                 Price = 15,
-                Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                Description = "Quisque vel lacus ac magna, vehicula sagittis ut non lacus.",
                 ImageUrl = "https://placehold.co/603x403",
                 CategoryName = "Appetizer"
             });
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 ProductId = 2,
-                Name = "Paneer Tikka",
+                Name = "Pumpkin/Tikva",
                 Price = 13.99,
-                Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                Description = "Quisque vel lacus ac magna, vehicula sagittis ut non lacus.",
                 ImageUrl = "https://placehold.co/602x402",
                 CategoryName = "Appetizer"
             });
@@ -38,16 +38,16 @@ namespace Mango.Services.ProductAPI.Data
                 ProductId = 3,
                 Name = "Sweet Pie",
                 Price = 10.99,
-                Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.",
                 ImageUrl = "https://placehold.co/601x401",
                 CategoryName = "Dessert"
             });
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 ProductId = 4,
-                Name = "Pav Bhaji",
+                Name = "Purlenka",
                 Price = 15,
-                Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                Description = "Generic description of the dish",
                 ImageUrl = "https://placehold.co/600x400",
                 CategoryName = "Entree"
             });
