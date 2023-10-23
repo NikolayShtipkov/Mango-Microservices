@@ -21,7 +21,13 @@ namespace Mango.Web.Controllers
         {
             return View(await LoadCartDtoBassedOnLoggedUser());
         }
-        
+
+        [Authorize]
+        public async Task<IActionResult> Checkout()
+        {
+            return View(await LoadCartDtoBassedOnLoggedUser());
+        }
+
         public async Task<IActionResult> Remove(int cartDetailsId)
         {
             var userId = User.Claims.Where(u => u.Type == JwtRegisteredClaimNames.Sub)?.FirstOrDefault()?.Value;
