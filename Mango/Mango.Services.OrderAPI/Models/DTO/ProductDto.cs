@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Mango.Services.OrderAPI.Models.DTO
+﻿namespace Mango.Services.OrderAPI.Models.DTO
 {
     public class ProductDto
     {
