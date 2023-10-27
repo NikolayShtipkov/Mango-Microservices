@@ -9,3 +9,6 @@ Contains the ASP.NET Web APIs for out microservices that the front-end uses to d
 
 # Integration
 Contains a .NET Class library Mango.MessageBus, where it connects to Azure Service Bus for messagin using queues and topics to process emails sent to customers for creating, updating or deleting orders.
+
+# Stripe
+Use stripe checkout for collecting payments of orders. After checkout it redirects user to stripe checkout page where they fill information to complete the purchase.
