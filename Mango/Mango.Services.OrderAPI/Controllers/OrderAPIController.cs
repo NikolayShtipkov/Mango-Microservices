@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 using Stripe;
+using Mango.MessageBus;
 
 namespace Mango.Services.OrderAPI.Controllers
 {
@@ -17,14 +18,19 @@ namespace Mango.Services.OrderAPI.Controllers
     {
         private IMapper _mapper;
         private IProductService _productService;
+        private readonly IMessageBus _messageBus;
+        private readonly IConfiguration _configuration;
         private readonly AppDbContext _db;
         protected ResponseDto _response;
 
-        public OrderAPIController(IMapper mapper, IProductService productService, AppDbContext db)
+        public OrderAPIController(IMapper mapper, IProductService productService, AppDbContext db,
+            IMessageBus messageBus, IConfiguration configuration)
         {
             _db = db;
             _mapper = mapper;
             _productService = productService;
+            _messageBus = messageBus;
+            _configuration = configuration;
             _response = new ResponseDto();
         }
 
@@ -137,9 +143,19 @@ namespace Mango.Services.OrderAPI.Controllers
                     orderHeader.PaymentIntentId = paymentIntent.Id;
                     orderHeader.Status = SD.Status_Approved;
                     _db.SaveChanges();
-                }
 
-                _response.Result = _mapper.Map<OrderHeaderDto>(orderHeader);
+                    RewardsDto rewardsDto = new()
+                    {
+                        UserId = orderHeader.UserId,
+                        RewardsActivity = Convert.ToInt32(orderHeader.OrderTotal),
+                        OrderId = orderHeader.OrderHeaderId
+                    };
+
+                    string topicName = _configuration.GetValue<string>("TopicAndQueueNames:OrderCreatedTopic");
+                    await _messageBus.PublishMessage(rewardsDto, topicName);
+
+                    _response.Result = _mapper.Map<OrderHeaderDto>(orderHeader);
+                }
             }
             catch (Exception ex)
             {
