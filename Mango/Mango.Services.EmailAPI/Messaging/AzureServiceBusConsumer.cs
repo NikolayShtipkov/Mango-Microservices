@@ -42,7 +42,6 @@ namespace Mango.Services.EmailAPI.Messaging
             await _registerUserProcessor.StartProcessingAsync();
         }
 
-
         public async Task Stop()
         {
             await _emailCartProcessor.StopProcessingAsync();
