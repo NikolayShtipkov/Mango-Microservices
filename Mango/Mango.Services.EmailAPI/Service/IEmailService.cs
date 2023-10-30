@@ -1,6 +1,6 @@
 ﻿using Mango.Services.EmailAPI.Models.DTO;
 
-namespace Mango.Services.EmailAPI.Services
+namespace Mango.Services.EmailAPI.Service
 {
     public interface IEmailService
     {

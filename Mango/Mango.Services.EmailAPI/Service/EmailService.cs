@@ -4,7 +4,7 @@ using Mango.Services.EmailAPI.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 
-namespace Mango.Services.EmailAPI.Services
+namespace Mango.Services.EmailAPI.Service
 {
     public class EmailService : IEmailService
     {
