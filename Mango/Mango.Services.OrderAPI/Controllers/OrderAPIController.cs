@@ -37,13 +37,13 @@ namespace Mango.Services.OrderAPI.Controllers
 
         [Authorize]
         [HttpGet("GetOrders")]
-        public ResponseDto? Get(string? userId = "")
+        public ResponseDto? Get([FromBody] string? userId = "")
         {
             try
             {
                 IEnumerable<OrderHeader> objList;
 
-                if (User.IsInRole(SD.RoleAdmin))
+                if (User.IsInRole(SD.RoleAdmin.ToUpper()))
                 {
                     objList = _db.OrderHeaders.Include(u => u.OrderDetails).OrderByDescending(u => u.OrderHeaderId).ToList();
                 }
