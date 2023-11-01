@@ -1,6 +1,5 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Service.IService;
-using Mango.Web.Utility;
 using static Mango.Web.Utility.SD;
 
 namespace Mango.Web.Service
@@ -8,7 +7,6 @@ namespace Mango.Web.Service
     public class OrderService : IOrderService
     {
         private readonly IBaseService _baseService;
-
         public OrderService(IBaseService baseService)
         {
             _baseService = baseService;
@@ -20,7 +18,7 @@ namespace Mango.Web.Service
             {
                 ApiType = ApiType.POST,
                 Data = cartDto,
-                Url = SD.OrderAPIBase + "/api/order/CreateOrder"
+                Url = OrderAPIBase + "/api/order/CreateOrder"
             });
         }
 
@@ -30,7 +28,7 @@ namespace Mango.Web.Service
             {
                 ApiType = ApiType.POST,
                 Data = stripeRequestDto,
-                Url = SD.OrderAPIBase + "/api/order/CreateStripeSession"
+                Url = OrderAPIBase + "/api/order/CreateStripeSession"
             });
         }
 
@@ -39,7 +37,7 @@ namespace Mango.Web.Service
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = ApiType.GET,
-                Url = SD.OrderAPIBase + "/api/order/GetOrders/" + userId
+                Url = OrderAPIBase + "/api/order/GetOrders/" + userId
             });
         }
 
@@ -48,7 +46,7 @@ namespace Mango.Web.Service
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = ApiType.GET,
-                Url = SD.OrderAPIBase + "/api/order/GetOrder/" + orderId
+                Url = OrderAPIBase + "/api/order/GetOrder/" + orderId
             });
         }
 
@@ -58,7 +56,7 @@ namespace Mango.Web.Service
             {
                 ApiType = ApiType.POST,
                 Data = newStatus,
-                Url = SD.OrderAPIBase + "/api/order/UpdateOrderStatus/" + orderId
+                Url = OrderAPIBase + "/api/order/UpdateOrderStatus/" + orderId
             });
         }
 
@@ -68,7 +66,7 @@ namespace Mango.Web.Service
             {
                 ApiType = ApiType.POST,
                 Data = orderHeaderId,
-                Url = SD.OrderAPIBase + "/api/order/ValidateStripeSession"
+                Url = OrderAPIBase + "/api/order/ValidateStripeSession"
             });
         }
     }
