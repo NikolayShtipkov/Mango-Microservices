@@ -104,7 +104,7 @@ namespace Mango.Web.Controllers
                         list = list.Where(u => u.Status == SD.Status_ReadyForPickup);
                         break;
                     case "cancelled":
-                        list = list.Where(u => u.Status == SD.Status_Cancelled);
+                        list = list.Where(u => u.Status == SD.Status_Cancelled || u.Status == SD.Status_Refunded);
                         break;
                     default:
                         break;
