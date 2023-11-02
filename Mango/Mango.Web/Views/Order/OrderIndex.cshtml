@@ -5,7 +5,7 @@
     var cancelled = "";
     var all = "";
 
-    switch(status)
+    switch (status)
     {
         case "approved":
             approved = "active text-white bg-secondary";
@@ -23,22 +23,22 @@
 }
 
 <div class="card shadow border-0 mt-4">
-    <div class="card-header bg-secondary bg-gradient m-0 py-3 justify-content-between">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3 d-flex justify-content-between">
         <div class="row">
             <h1 class="text-white">Order List</h1>
         </div>
-        <ul class="list-group list-group-horizonal-sm pt-2">
-            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route="approved">
-                <li class="list-group-item @approved">Approved</li>
+        <ul class="list-group list-group-horizontal-sm pt-2">
+            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route-status="approved">
+            <li class="list-group-item @approved">Approved</li>
             </a>
-            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route="readyforpickup">
-                <li class="list-group-item @readyforpickup">Ready for Pickup</li>
+            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route-status="readyforpickup">
+            <li class="list-group-item @readyforpickup">Ready for Pikcup</li>
             </a>
-            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route="cancelled">
-                <li class="list-group-item @cancelled">Cancelled</li>
+            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route-status="cancelled">
+            <li class="list-group-item @cancelled">Cancelled</li>
             </a>
-            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route="all">
-                <li class="list-group-item @all">All</li>
+            <a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route-status="all">
+            <li class="list-group-item @all">All</li>
             </a>
         </ul>
     </div>
