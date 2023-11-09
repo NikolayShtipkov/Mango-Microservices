@@ -176,7 +176,7 @@
 
     //Order API - Port 7004
     {
-      "DownstreamPathTemplate": "/api/order/GetOrder/{orderId}",
+      "DownstreamPathTemplate": "/api/order/GetOrder?userId={orderId}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {

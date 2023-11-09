@@ -1,9 +1,9 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Service.IService;
 using Mango.Web.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Mango.Web.Controllers
@@ -16,11 +16,13 @@ namespace Mango.Web.Controllers
             _orderService = orderService;
         }
 
+        [Authorize]
         public IActionResult OrderIndex()
         {
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> OrderDetail(int orderId)
         {
             OrderHeaderDto orderHeaderDto = new OrderHeaderDto();
