@@ -10,5 +10,5 @@ builder.AddAppAuthentication();
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
-app.UseOcelot().GetAwaiter().GetResult();
+app.UseOcelot().Wait();
 app.Run();
