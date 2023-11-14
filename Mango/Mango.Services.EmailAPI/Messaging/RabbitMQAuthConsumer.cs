@@ -1,5 +1,8 @@
 ﻿using Mango.Services.EmailAPI.Service;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System.Text;
 
 namespace Mango.Services.EmailAPI.Messaging
 {
@@ -29,7 +32,26 @@ namespace Mango.Services.EmailAPI.Messaging
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            throw new NotImplementedException();
+            stoppingToken.ThrowIfCancellationRequested();
+
+            var consumer = new EventingBasicConsumer(_channel);
+            consumer.Received += (ch, ea) =>
+            {
+                var content = Encoding.UTF8.GetString(ea.Body.ToArray());
+                String email = JsonConvert.DeserializeObject<String>(content);
+                HandleMessage(email).GetAwaiter().GetResult();
+
+                _channel.BasicAck(ea.DeliveryTag, false);
+            };
+
+            _channel.BasicConsume(_configuration.GetValue<string>("TopicAndQueueNames:RegisterUserQueue"), false, consumer);
+
+            return Task.CompletedTask;
+        }
+
+        private async Task HandleMessage(string email)
+        {
+            _emailService.RegisterUserEmailAndLog(email).GetAwaiter().GetResult();
         }
     }
 }
