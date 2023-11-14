@@ -3,6 +3,7 @@ using Mango.MessageBus;
 using Mango.Services.ShoppingCartAPI.Data;
 using Mango.Services.ShoppingCartAPI.Models;
 using Mango.Services.ShoppingCartAPI.Models.DTO;
+using Mango.Services.ShoppingCartAPI.RabbitMQSender;
 using Mango.Services.ShoppingCartAPI.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +19,11 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
         private IProductService _productService;
         private ICouponService _couponService;
         private IConfiguration _configuration;
-        private readonly IMessageBus _messageBus;
+        private readonly IRabbitMQMessageSender _messageBus;
         private readonly AppDbContext _db;
 
         public CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, 
-            ICouponService couponService, IMessageBus messageBus, IConfiguration configuration)
+            ICouponService couponService, IRabbitMQMessageSender messageBus, IConfiguration configuration)
         {
             _db = db;
             _mapper = mapper;
@@ -101,7 +102,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
         {
             try
             {
-                await _messageBus.PublishMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCartQueue"));
+                _messageBus.SendMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCartQueue"));
                 _response.IsSuccess = true;
             }
             catch (Exception ex)
