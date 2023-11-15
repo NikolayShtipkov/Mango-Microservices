@@ -14,12 +14,14 @@ namespace Mango.Services.EmailAPI.Messaging
         private readonly EmailService _emailService;
         private IConnection _connection;
         private IModel _channel;
-        string queueName = "";
+        private const string OrderCreated_EmailUpdateQueue = "EmailUpdateQueue";
+        private string ExchangeName = "";
 
         public RabbitMQOrderConsumer(IConfiguration configuration, EmailService emailService)
         {
             _configuration = configuration;
             _emailService = emailService;
+            ExchangeName = _configuration.GetValue<string>("TopicAndQueueNames:OrderCreateTopic");
 
             var factory = new ConnectionFactory 
             { 
@@ -30,9 +32,10 @@ namespace Mango.Services.EmailAPI.Messaging
 
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.ExchangeDeclare(_configuration.GetValue<string>("TopicAndQueueNames:OrderCreateTopic"), ExchangeType.Fanout);
-            queueName = _channel.QueueDeclare().QueueName;
-            _channel.QueueBind(queueName, _configuration.GetValue<string>("TopicAndQueueNames:OrderCreateTopic"), "");
+            _channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct);
+
+            _channel.QueueDeclare(OrderCreated_EmailUpdateQueue, false, false, false, null);
+            _channel.QueueBind(OrderCreated_EmailUpdateQueue, ExchangeName, "EmailUpdate");
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -49,7 +52,7 @@ namespace Mango.Services.EmailAPI.Messaging
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
 
-            _channel.BasicConsume(queueName, false, consumer);
+            _channel.BasicConsume(ExchangeName, false, consumer);
 
             return Task.CompletedTask;
         }
