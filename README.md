@@ -1,5 +1,5 @@
 # Mango-Microservices
-Web app for shopping products and placing orders with web api microservices, mvc project consuming services and displaying them, identity and service bus messaging.
+Web app for shopping products and placing orders with web api microservices, mvc project consuming services and displaying them, identity and Rabbit MQ messaging.
 
 # MVC Web
 Mango.Web is a ASP.NET MVC APP which consumes the microservices and provides the client-side. We display the functionalities through razor pages, controllers, models and views.
