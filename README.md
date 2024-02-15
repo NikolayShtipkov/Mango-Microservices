@@ -15,3 +15,8 @@ Add Ocelote project to act as an API gateway and bring everything together.
 
 # Stripe
 Use stripe checkout for collecting payments of orders. After checkout it redirects user to stripe checkout page where they fill information to complete the purchase.
+
+# Startup
+Set the connection strings for the databases in the APIs at appsettings.json(Optionally setup azure connection strings as well). Run update-database in console to init databases.
+Set visual studio to mulltiple startup project and select the ones that need to be ran.
+Start the project.
